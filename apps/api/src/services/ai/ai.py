@@ -49,7 +49,16 @@ def ai_start_activity_chat_session(
         .where(Activity.activity_uuid == chat_session_object.activity_uuid)
     )
     course = db_session.exec(statement).first()
-    course = CourseRead.model_validate(course)
+
+    if not course:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Course not found for activity {chat_session_object.activity_uuid}"
+        )
+
+    # Add default authors if missing to avoid validation error
+    if not hasattr(course, 'authors') or course.authors is None:
+        course.authors = []
 
     # Get the Organization
     statement = select(Organization).where(Organization.id == course.org_id)

@@ -1,9 +1,9 @@
 {
-  "name": "learnhouse",
+  "name": "alif",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "NODE_OPTIONS='--max-old-space-size=2048' next dev",
     "dev-https": "next dev --experimental-https -p 443",
     "build": "next build",
     "start": "next start",

@@ -4,17 +4,17 @@
   </a>
 </p>
 
-LearnHouse is an open source platform that makes it easy for anyone to provide world-class educational content and it offers a variety of content types : Dynamic Pages, Videos, Documents & more..
+Alif is an open source platform by Alif Edtech that makes it easy for anyone to provide world-class educational content and it offers a variety of content types : Dynamic Pages, Videos, Documents & more..
 
 ## Progress
 
-🚧 LearnHouse is still on early development (alpha), as we reach stability we will release a stable version and add more features.
+🚧 Alif is still on early development (alpha), as we reach stability we will release a stable version and add more features.
 
 ## Roadmap
 
-We prioritize issues depending on the most requested features from our users, please help us prioritize issues by commenting on them and sharing your thoughts 
+We prioritize issues depending on the most requested features from our users, please help us prioritize issues by commenting on them and sharing your thoughts
 
-[🚢 LearnHouse General Roadmap](https://www.learnhouse.app/roadmap)
+[🚢 Alif General Roadmap](https://www.learnhouse.app/roadmap)
 
 [👨‍💻 Detailed Roadmap](https://github.com/orgs/learnhouse/projects/4)
 
@@ -33,7 +33,7 @@ We prioritize issues depending on the most requested features from our users, pl
 - 👟 Course Progress
 - 🛜 Course Updates
 - 💬 Discussions
-- ✨ LearnHouse AI : The Teachers and Students copilot
+- ✨ Alif AI : The Teachers and Students copilot
 - 👪 Multiplayer Course edition
 - More to come
 
@@ -56,7 +56,7 @@ Thank you for you interest 💖, here is how you can help :
 - [Overview](https://docs.learnhouse.app)
 - [Developers](https://docs.learnhouse.app/setup-dev-environment)
 
-## Get started 
+## Get started
 
 ### Get a local ready copy of LearnHouse
 
@@ -64,7 +64,7 @@ TLDR: Run `docker-compose up -d` and inspect the logs, should be ready to go in 
 
 - [Self Hosting](https://docs.learnhouse.app/self-hosting/hosting-guide)
 
-### Set-up a Development Environment 
+### Set-up a Development Environment
 
 - [Detailed Guide](https://docs.learnhouse.app/setup-dev-environment)
 
@@ -83,17 +83,17 @@ LearnHouse uses a number of open source projects to work properly:
 - **LangChain** - LangChain is a framework for developing applications powered by language models
 - **React** - duh
 
-## LearnHouse University
+## Alif University
 
 <a href="https://university.learnhouse.io">
 <img width="208" alt="lh_univ" src="https://github.com/learnhouse/learnhouse/assets/29493708/72a892cd-7c5a-4437-9130-ff1682a10b24">
 </a>
 
-Learn about LearnHouse and how to use it, using LearnHouse
+Learn about Alif and how to use it, using Alif
 
 
 ## A word
 
-Learnhouse is made with 💜, from the UI to the features it is carefully designed to make students and teachers lives easier and make education software more enjoyable.
+Alif Edtech is made with 💜, from the UI to the features it is carefully designed to make students and teachers lives easier and make education software more enjoyable.
 
-Thank you and have fun using/developing/testing LearnHouse !
+Thank you and have fun using/developing/testing Alif !

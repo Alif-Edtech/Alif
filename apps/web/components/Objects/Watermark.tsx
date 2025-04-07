@@ -15,8 +15,8 @@ function Watermark() {
         return (
             <div className='fixed bottom-8 right-8'>
                 <Link href={`https://www.learnhouse.app/?source=in-app`} className="flex items-center cursor-pointer bg-white/80 backdrop-blur-lg text-gray-700 rounded-2xl p-2 light-shadow text-xs px-5 font-semibold space-x-2">
-                    <p>Made with</p>
-                    <Image unoptimized src={blacklogo} alt="logo" quality={100} width={85} />
+                    <p>Powered by</p>
+                    <Image unoptimized src={blacklogo} alt="Alif Edtech" quality={100} width={85} />
                 </Link>
             </div>
         )

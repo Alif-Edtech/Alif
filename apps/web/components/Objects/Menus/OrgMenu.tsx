@@ -38,12 +38,12 @@ export const OrgMenu = (props: any) => {
                   {org?.logo_image ? (
                     <img
                       src={`${getOrgLogoMediaDirectory(org.org_uuid, org?.logo_image)}`}
-                      alt="Learnhouse"
+                      alt="Alif"
                       style={{ width: 'auto', height: '100%' }}
                       className="rounded-md"
                     />
                   ) : (
-                    <LearnHouseLogo />
+                    <AlifLogo />
                   )}
                 </div>
               </Link>
@@ -52,7 +52,7 @@ export const OrgMenu = (props: any) => {
               <MenuLinks orgslug={orgslug} />
             </div>
           </div>
-          
+
           {/* Search Section */}
           <div className="hidden md:flex flex-1 justify-center max-w-lg px-4">
             <SearchBar orgslug={orgslug} className="w-full" />
@@ -101,7 +101,7 @@ export const OrgMenu = (props: any) => {
   )
 }
 
-const LearnHouseLogo = () => {
+const AlifLogo = () => {
   return (
     <svg
       width="133"

@@ -86,7 +86,7 @@ function ForgotPasswordClient() {
                                         org?.org_uuid,
                                         org?.logo_image
                                     )}`}
-                                    alt="Learnhouse"
+                                    alt="Alif"
                                     style={{ width: 'auto', height: 70 }}
                                     className="rounded-xl shadow-xl inset-0 ring-1 ring-inset ring-black/10 bg-white"
                                 />

@@ -61,7 +61,7 @@ const LoginClient = (props: LoginClientProps) => {
         setSubmitting(false);
         return;
       }
-      
+
       const res = await signIn('credentials', {
         redirect: false,
         email: values.email,
@@ -111,7 +111,7 @@ const LoginClient = (props: LoginClientProps) => {
                     props.org.org_uuid,
                     props.org?.logo_image
                   )}`}
-                  alt="Learnhouse"
+                  alt="Alif"
                   style={{ width: 'auto', height: 70 }}
                   className="rounded-xl shadow-xl inset-0 ring-1 ring-inset ring-black/10 bg-white"
                 />
@@ -148,7 +148,7 @@ const LoginClient = (props: LoginClientProps) => {
                   onChange={formik.handleChange}
                   value={formik.values.email}
                   type="email"
-                  
+
                 />
               </Form.Control>
             </FormField>
@@ -164,7 +164,7 @@ const LoginClient = (props: LoginClientProps) => {
                   onChange={formik.handleChange}
                   value={formik.values.password}
                   type="password"
-                  
+
                 />
               </Form.Control>
             </FormField>

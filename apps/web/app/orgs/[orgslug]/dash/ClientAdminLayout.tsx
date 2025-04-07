@@ -16,7 +16,7 @@ function ClientAdminLayout({
     const isMobile = useMediaQuery('(max-width: 768px)')
 
     return (
-        <SessionProvider>
+        <SessionProvider key="session-provider-admin">
             <AdminAuthorization authorizationMode="page">
                 <div className="flex flex-col md:flex-row">
                     {isMobile ? (

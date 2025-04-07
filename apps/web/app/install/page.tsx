@@ -2,8 +2,8 @@ import React from 'react'
 import InstallClient from './install'
 
 export const metadata = {
-  title: 'Install LearnHouse',
-  description: 'Install Learnhouse on your server',
+  title: 'Install Alif',
+  description: 'Install Alif on your server',
 }
 
 function InstallPage() {

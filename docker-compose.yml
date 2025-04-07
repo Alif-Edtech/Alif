@@ -5,9 +5,9 @@ services:
     ports:
       - "80:80"
     volumes:
-      - .:/usr/learnhouse
+      - .:/usr/alif
     env_file:
-      - ./extra/example-learnhouse-conf.env
+      - ./extra/example-alif-conf.env
     depends_on:
       db:
         condition: service_healthy
@@ -19,14 +19,19 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=learnhouse
-      - POSTGRES_PASSWORD=learnhouse
-      - POSTGRES_DB=learnhouse
+      - POSTGRES_USER=alif
+      - POSTGRES_PASSWORD=alif
+      - POSTGRES_DB=alif
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U learnhouse"]
+      test: ["CMD-SHELL", "pg_isready -U alif"]
       interval: 5s
       timeout: 4s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
   redis:
     image: redis:7.2.3
     restart: always
@@ -37,7 +42,17 @@ services:
       interval: 5s
       timeout: 4s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
   chromadb:
     image: chromadb/chroma:0.5.16
     ports:
       - "8000:8000"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M

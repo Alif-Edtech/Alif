@@ -1,5 +1,5 @@
-site_name: LearnHouse
-site_description: LearnHouse is an open-source platform tailored for learning experiences.
+site_name: Alif
+site_description: Alif is an open-source platform by Alif Edtech tailored for learning experiences.
 contact_email: hi@learnhouse.app
 
 # This config is optimized for local development. You can change the values according to your needs.
@@ -18,9 +18,11 @@ hosting_config:
   allowed_origins:
     - http://localhost:3000
     - http://localhost:3001
+    - http://127.0.0.1:3000
+    - http://127.0.0.1:3001
   cookies_config:
     domain: ".localhost"
-  allowed_regexp: '\b((?:https?://)[^\s/$.?#].[^\s]*)\b'
+  allowed_regexp: '.*'
   content_delivery:
     type: "filesystem" # "filesystem" or "s3api"
     s3api:
@@ -32,10 +34,10 @@ mailing_config:
   system_email_adress: ""
 
 database_config:
-  sql_connection_string: postgresql://learnhouse:learnhouse@localhost:5432/learnhouse
+  sql_connection_string: postgresql://alif:alif@localhost:5432/alif
 
 redis_config:
-  redis_connection_string: redis://localhost:6379/learnhouse
+  redis_connection_string: redis://localhost:6379/alif
 
 payments_config:
   stripe:
@@ -45,6 +47,9 @@ payments_config:
     stripe_client_id: ""
 
 ai_config:
+  openai_api_key: "YOUR_OPENAI_API_KEY" # Replace with your actual OpenAI API key
+  default_embedding_model: "text-embedding-ada-002"
+  default_llm_model: "gpt-3.5-turbo" # You can also use gpt-4 for better results
   chromadb_config:
     isSeparateDatabaseEnabled: True
     db_host: "localhost"

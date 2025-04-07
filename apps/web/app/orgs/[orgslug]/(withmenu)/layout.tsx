@@ -19,7 +19,7 @@ export default function RootLayout(
 
   return (
     <>
-      <SessionProvider>
+      <SessionProvider key="session-provider-withmenu">
         <OrgMenu orgslug={params?.orgslug}></OrgMenu>
         {children}
         <Watermark />
