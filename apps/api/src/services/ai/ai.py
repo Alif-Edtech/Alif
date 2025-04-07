@@ -11,6 +11,7 @@ from src.core.events.database import get_db_session
 from src.db.users import PublicUser
 from src.db.courses.activities import Activity, ActivityRead
 from src.security.auth import get_current_user
+from config.config import get_learnhouse_config
 from src.services.ai.base import ask_ai, get_chat_session_history
 
 from src.services.ai.schemas.ai import (
@@ -104,7 +105,10 @@ def ai_start_activity_chat_session(
     org_config = result.first()
 
     org_config = OrganizationConfig.model_validate(org_config)
-    embeddings = "text-embedding-ada-002"
+    # Get default embedding model from config
+    LH_CONFIG = get_learnhouse_config()
+    embeddings = getattr(LH_CONFIG.ai_config, 'default_embedding_model', "text-embedding-ada-002")
+    # Get model from organization config
     ai_model = org_config.config["features"]["ai"]["model"]
 
     chat_session = get_chat_session_history()
@@ -195,7 +199,10 @@ def ai_send_activity_chat_message(
     org_config = result.first()
 
     org_config = OrganizationConfig.model_validate(org_config)
-    embeddings = "text-embedding-ada-002"
+    # Get default embedding model from config
+    LH_CONFIG = get_learnhouse_config()
+    embeddings = getattr(LH_CONFIG.ai_config, 'default_embedding_model', "text-embedding-ada-002")
+    # Get model from organization config
     ai_model = org_config.config["features"]["ai"]["model"]
 
     chat_session = get_chat_session_history(chat_session_object.aichat_uuid)

@@ -47,9 +47,11 @@ payments_config:
     stripe_client_id: ""
 
 ai_config:
-  openai_api_key: "YOUR_OPENAI_API_KEY" # Replace with your actual OpenAI API key
-  default_embedding_model: "text-embedding-ada-002"
-  default_llm_model: "gpt-3.5-turbo" # You can also use gpt-4 for better results
+  openai_api_key: "" # OpenAI API key for embeddings
+  groq_api_key: "" # Groq API key for LLM inference
+  default_embedding_model: "text-embedding-ada-002" # Still using OpenAI for embeddings
+  default_llm_model: "meta-llama/llama-4-scout-17b-16e-instruct" # Groq's Llama 4 Scout model
+  llm_provider: "groq" # Can be "openai" or "groq"
   chromadb_config:
     isSeparateDatabaseEnabled: True
     db_host: "localhost"

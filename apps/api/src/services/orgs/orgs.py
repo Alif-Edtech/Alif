@@ -172,7 +172,7 @@ async def create_org(
             ),
             usergroups=UserGroupOrgConfig(enabled=True, limit=0),
             storage=StorageOrgConfig(enabled=True, limit=0),
-            ai=AIOrgConfig(enabled=True, limit=0, model="gpt-4o-mini"),
+            ai=AIOrgConfig(enabled=True, limit=0, model="meta-llama/llama-4-scout-17b-16e-instruct"),
             assignments=AssignmentOrgConfig(enabled=True, limit=0),
             payments=PaymentOrgConfig(enabled=True),
             discussions=DiscussionOrgConfig(enabled=True, limit=0),
@@ -691,7 +691,7 @@ async def upload_org_preview_service(
     org_uuid: str,
 ) -> dict:
     # No need for request or current_user since we're not doing RBAC checks for previews
-    
+
     # Upload preview
     name_in_disk = await upload_org_preview(preview_file, org_uuid)
 
@@ -736,7 +736,7 @@ async def update_org_landing(
 
     # Convert to OrganizationConfigBase model and back to ensure all fields exist
     config_model = OrganizationConfigBase(**org_config.config)
-    
+
     # Update the landing object
     config_model.landing = landing_object
 
@@ -793,7 +793,7 @@ async def rbac_check(
     # Organizations are readable by anyone
     if action == "read":
         return True
-    
+
     # Internal users can do anything
     if isinstance(current_user, InternalUser):
         return True

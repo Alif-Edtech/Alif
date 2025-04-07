@@ -19,13 +19,17 @@ class SecurityConfig(BaseModel):
 
 
 class ChromaDBConfig(BaseModel):
-    isSeparateDatabaseEnabled: bool | None 
-    db_host: str | None 
+    isSeparateDatabaseEnabled: bool | None
+    db_host: str | None
 
 
 class AIConfig(BaseModel):
     openai_api_key: str | None
+    groq_api_key: str | None
     is_ai_enabled: bool | None
+    llm_provider: str | None
+    default_llm_model: str | None
+    default_embedding_model: str | None
     chromadb_config: ChromaDBConfig | None
 
 
@@ -143,7 +147,7 @@ def get_learnhouse_config() -> LearnHouseConfig:
     env_self_hosted = os.environ.get("LEARNHOUSE_SELF_HOSTED")
     env_sql_connection_string = os.environ.get("LEARNHOUSE_SQL_CONNECTION_STRING")
 
-    
+
 
     # Fill in values with YAML file if they are not provided
     site_name = env_site_name or yaml_config.get("site_name")
@@ -204,15 +208,31 @@ def get_learnhouse_config() -> LearnHouseConfig:
 
     # AI Config
     env_openai_api_key = os.environ.get("LEARNHOUSE_OPENAI_API_KEY")
+    env_groq_api_key = os.environ.get("LEARNHOUSE_GROQ_API_KEY")
     env_is_ai_enabled = os.environ.get("LEARNHOUSE_IS_AI_ENABLED")
+    env_llm_provider = os.environ.get("LEARNHOUSE_LLM_PROVIDER")
+    env_default_llm_model = os.environ.get("LEARNHOUSE_DEFAULT_LLM_MODEL")
+    env_default_embedding_model = os.environ.get("LEARNHOUSE_DEFAULT_EMBEDDING_MODEL")
     env_chromadb_separate = os.environ.get("LEARNHOUSE_CHROMADB_SEPARATE")
     env_chromadb_host = os.environ.get("LEARNHOUSE_CHROMADB_HOST")
 
     openai_api_key = env_openai_api_key or yaml_config.get("ai_config", {}).get(
         "openai_api_key"
     )
+    groq_api_key = env_groq_api_key or yaml_config.get("ai_config", {}).get(
+        "groq_api_key"
+    )
     is_ai_enabled = env_is_ai_enabled or yaml_config.get("ai_config", {}).get(
         "is_ai_enabled"
+    )
+    llm_provider = env_llm_provider or yaml_config.get("ai_config", {}).get(
+        "llm_provider"
+    )
+    default_llm_model = env_default_llm_model or yaml_config.get("ai_config", {}).get(
+        "default_llm_model"
+    )
+    default_embedding_model = env_default_embedding_model or yaml_config.get("ai_config", {}).get(
+        "default_embedding_model"
     )
     chromadb_separate = env_chromadb_separate or yaml_config.get("ai_config", {}).get(
         "chromadb_config", {}
@@ -243,11 +263,11 @@ def get_learnhouse_config() -> LearnHouseConfig:
     env_stripe_webhook_standard_secret = os.environ.get("LEARNHOUSE_STRIPE_WEBHOOK_STANDARD_SECRET")
     env_stripe_webhook_connect_secret = os.environ.get("LEARNHOUSE_STRIPE_WEBHOOK_CONNECT_SECRET")
     env_stripe_client_id = os.environ.get("LEARNHOUSE_STRIPE_CLIENT_ID")
-    
+
     stripe_secret_key = env_stripe_secret_key or yaml_config.get("payments_config", {}).get(
         "stripe", {}
     ).get("stripe_secret_key")
-    
+
     stripe_publishable_key = env_stripe_publishable_key or yaml_config.get("payments_config", {}).get(
         "stripe", {}
     ).get("stripe_publishable_key")
@@ -283,7 +303,11 @@ def get_learnhouse_config() -> LearnHouseConfig:
     # AI Config
     ai_config = AIConfig(
         openai_api_key=openai_api_key,
+        groq_api_key=groq_api_key,
         is_ai_enabled=bool(is_ai_enabled),
+        llm_provider=llm_provider,
+        default_llm_model=default_llm_model,
+        default_embedding_model=default_embedding_model,
         chromadb_config=ChromaDBConfig(
             isSeparateDatabaseEnabled=bool(chromadb_separate), db_host=chromadb_host
         ),

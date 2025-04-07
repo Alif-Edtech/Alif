@@ -1,8 +1,10 @@
-from typing import Optional
+from typing import Optional, Union
 from functools import lru_cache
 import chromadb
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.chat_models import ChatOpenAI
+from langchain_groq import ChatGroq
+from langchain_core.language_models.chat_models import BaseChatModel
 from config.config import get_learnhouse_config
 
 @lru_cache()
@@ -10,9 +12,9 @@ def get_chromadb_client():
     """Get cached ChromaDB client instance"""
     LH_CONFIG = get_learnhouse_config()
     chromadb_config = getattr(LH_CONFIG.ai_config, 'chromadb_config', None)
-    
+
     if (
-        chromadb_config 
+        chromadb_config
         and isinstance(chromadb_config.db_host, str)
         and chromadb_config.db_host
         and getattr(chromadb_config, 'isSeparateDatabaseEnabled', False)
@@ -28,10 +30,10 @@ def get_embedding_function(model_name: str) -> Optional[OpenAIEmbeddings]:
     """Get cached embedding function"""
     LH_CONFIG = get_learnhouse_config()
     api_key = getattr(LH_CONFIG.ai_config, 'openai_api_key', None)
-    
+
     if not api_key:
         return None
-        
+
     if model_name == "text-embedding-ada-002":
         return OpenAIEmbeddings(
             model=model_name,
@@ -40,16 +42,28 @@ def get_embedding_function(model_name: str) -> Optional[OpenAIEmbeddings]:
     return None
 
 @lru_cache()
-def get_llm(model_name: str, temperature: float = 0) -> Optional[ChatOpenAI]:
-    """Get cached LLM instance"""
+def get_llm(model_name: str, temperature: float = 0) -> Optional[BaseChatModel]:
+    """Get cached LLM instance based on provider configuration"""
     LH_CONFIG = get_learnhouse_config()
-    api_key = getattr(LH_CONFIG.ai_config, 'openai_api_key', None)
-    
-    if not api_key:
-        return None
-        
-    return ChatOpenAI(
-        temperature=temperature,
-        api_key=api_key,
-        model=model_name
-    ) 
+    llm_provider = getattr(LH_CONFIG.ai_config, 'llm_provider', 'openai')
+
+    if llm_provider == 'groq':
+        api_key = getattr(LH_CONFIG.ai_config, 'groq_api_key', None)
+        if not api_key:
+            return None
+
+        return ChatGroq(
+            temperature=temperature,
+            api_key=api_key,
+            model_name=model_name
+        )
+    else:  # Default to OpenAI
+        api_key = getattr(LH_CONFIG.ai_config, 'openai_api_key', None)
+        if not api_key:
+            return None
+
+        return ChatOpenAI(
+            temperature=temperature,
+            api_key=api_key,
+            model=model_name
+        )

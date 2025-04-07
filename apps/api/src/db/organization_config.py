@@ -30,7 +30,7 @@ class StorageOrgConfig(BaseModel):
 class AIOrgConfig(BaseModel):
     enabled: bool = True
     limit: int = 10
-    model: str = "gpt-4o-mini"
+    model: str = "meta-llama/llama-4-scout-17b-16e-instruct"
 
 
 class AssignmentOrgConfig(BaseModel):
